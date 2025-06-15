@@ -1,16 +1,16 @@
 # Character Class
 
 class Character:
-    def __init__(self, name, level=1, type="Man", xp=0,
+    def __init__(self, name="Nikos", xp=0, level=1, type="Man",
                  atk=5, dfn=5):
+        self.xp = xp
         self.name = name
-        self.title = self.title()
         self.level = self.get_level()
+        self.rank = self.title()
         self.hp = self.get_hp()
         self.atk = atk
         self.dfn = dfn
         self.type = type
-        self.xp = xp
         self.achieve = []
         self.items = []
 
@@ -18,7 +18,7 @@ class Character:
         return self.level * 1.5
     
     def get_level(self):
-        if self.xp > 0 and self.xp <= 99:
+        if self.xp >= 0 and self.xp <= 99:
             return 1
         if self.xp >= 100 and self.xp <= 249:
             return 2
@@ -64,3 +64,5 @@ class Character:
         if self.level == 10 and "chaos" in self.achieve:
             return "Agent of Chaos"
         
+    def __repr__(self):
+        return f"{self.name}, Lvl {self.level} {self.rank}"
